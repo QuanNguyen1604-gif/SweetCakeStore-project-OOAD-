@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu | Matie Cake</title>
+    <link rel="icon" type="image/png" href="Image/Logo.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="stylesheet" href="src/styles/media query.css">
+
+    <style>
+        /* CSS CHUNG */
+        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .nav-open { display: flex !important; flex-direction: column; align-items: flex-start; }
+
+        /* HEADER & NAVIGATION */
+        header { background: #1a1157; color: #fff; padding: 10px 40px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { height: 60px; margin-right: 40px; }
+        nav { flex: 1; }
+        nav ul { list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; position: relative; justify-content: flex-end; }
+        nav li { font-weight: 700; position: relative; }
+        nav a { color: #fff; text-decoration: none; transition: color 0.2s; }
+        nav a:hover { color: #ffe066; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #2a2f95;
+            min-width: 220px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            border-radius: 0 0 8px 8px;
+            z-index: 10;
+            padding: 0;
+            margin-top: 0;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a {
+            display: block;
+            padding: 12px 24px;
+            color: #fff;
+            font-weight: 400;
+            text-decoration: none;
+            border-bottom: 1px solid #4e6b2b;
+            white-space: nowrap;
+        }
+        .dropdown-content a:hover {
+            background: #2e3d1b;
+            color: #ffe066;
+        }
+        .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; }
+
+
+        /* MIDDLE SECTION (Nội Dung Chính) */
+        .middle-section {
+            display: flex;
+            justify-content: center;
+            align-items: stretch; /* Stretch images to match content height */
+            gap: 20px;
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #f4f4f4;
+        }
+        .side-image {
+            width: 250px; /* Chiều rộng cố định cho ảnh bên */
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            min-height: 100%; /* Fill the height of the container */
+            max-height: 500px; /* Limit height for aesthetic */
+        }
+        .center-content {
+            flex-grow: 1;
+            max-width: 700px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            line-height: 1.7;
+        }
+        .center-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #a85b2b; /* Màu thương hiệu nổi bật */
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .center-content p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* FOOTER CSS */
+        footer { background: #1a1157; color: #fff; padding: 40px 0 20px 0; }
+        .footer-content { max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap; gap: 32px; padding: 0 20px; }
+        .footer-info { flex: 2; }
+        .footer-logo { height: 48px; margin-bottom: 16px; }
+        .footer-links { flex: 1; }
+        .footer-links ul { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a { color: #ffe066; text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: #fff; }
+        .footer-bottom { text-align: center; margin-top: 32px; font-size: 0.95rem; color: #bbb; border-top: 1px solid #2e246e; padding-top: 20px; }
+
+        /* MOBILE/RESPONSIVE */
+        @media (max-width: 1200px) {
+            .side-image { width: 150px; max-height: 400px; }
+            .center-content { padding: 30px; }
+        }
+
+        @media (max-width: 900px) {
+            header { padding: 10px 20px; }
+            .logo { height: 50px; }
+            .menu-toggle { display: block; }
+            nav { position: absolute; top: 70px; left: 0; width: 100%; background: #1a1157; z-index: 50; display: none; }
+            nav ul { flex-direction: column; align-items: flex-start; gap: 0; padding: 10px 0; }
+            nav a { padding: 10px 20px; display: block; width: 100%; }
+            .dropdown-content { position: static; min-width: 100%; box-shadow: none; border-radius: 0; background: #2e3d1b; }
+            
+            /* Hide side images on small screens */
+            .middle-section { flex-direction: column; gap: 0; padding: 0; margin: 20px auto; }
+            .side-image { display: none; }
+            .center-content { max-width: 95%; border-radius: 0; box-shadow: none; padding: 25px 15px; }
+
+            .footer-content { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="Image/Logo.png" alt="Matie Cake" class="logo"></a>
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <nav id="main-nav">
+            <ul>
+                <li class="dropdown">
+                    <a href="#" aria-haspopup="true">Cake Menu</a>
+                    <ul class="dropdown-content" role="menu">
+                        <li><a href="index.html#new-products">New Products</a></li>
+                        <li><a href="index.html#favorite-products">Favorite Products</a></li>
+                        <li><a href="index.html#christmas-gifts">Christmas Gifts</a></li>
+                        <li><a href="index.html#tet-gifts">Tet Gifts</a></li>
+                    </ul>
+                </li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="khach-hang-than-thiet.html">Loyal Customers</a></li>
+                <li><a href="general-policy.html">General Policy</a></li>
+                <li><a href="work-shop.html">Workshop</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="middle-section">
+        <img src="Intro 1.jpg" 
+            alt="Ảnh trang trí bên trái" 
+            class="side-image left"
+        >        
+        <div class="center-content">
+            <h2>About Us</h2>
+            <p>Matie Cake was born from the passion and desire to create high-quality handmade cakes, both preserving traditional flavors and bringing a modern breath. Exporting small batches of cakes from family kitchens, the brand gradually shaped its own identity: meticulousness in ingredients, sophistication in flavor and creative taste in presentation.</p>
+            <p>Through the process of research, testing and perfection, Matie Cake officially launched the market with the mission of bringing customers cakes that are not only delicious but also contain mythical spiritual values. The motto **"Giving delicate gifts, sending love"** has become a guiding principle in all activities, from production, product design to customer experience.</p>
+            
+            <p>From the first challenging steps, Matie Cake has continuously developed, affirming its reputation in the handmade cake market. Nowadays, Matie Cake is not only the number 1 choice of customers when looking for a quality product but is also considered a symbol of sophistication in giving and sharing.</p>
+        </div>
+
+        <img src="Intro 2.jpg" 
+            alt="Ảnh trang trí bên phải" 
+            class="side-image right">    
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="Image/Logo.png" alt="Matie Cake" class="footer-logo">
+                <div>Matie Cake Co., Ltd.</div>
+                <div>Address: 3636 Hai Ba Trung, Vo Thi Sau Ward, 3 district, Ho Chi Minh City</div>
+                <div>Phone: 0886804360</div>
+                <div>Email: matiecake@gmail.com</div>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return & Refund Policy</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Personal Data Protection</a></li>
+                    <li><a href="#">Contact Information</a></li>
+                    <li><a href="#">Store</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Matie Cake.
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle logic
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                    menuToggle.setAttribute('aria-expanded', !isExpanded);
+                    nav.classList.toggle('nav-open');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

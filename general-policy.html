@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loyal Customers | Matie Cake</title>
+    <link rel="icon" type="image/png" href="Image/Logo.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="stylesheet" href="src/styles/media query.css">
+
+    <style>
+        /* CSS CƠ BẢN VÀ CHUNG */
+        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        header { background: #1a1157; color: #fff; padding: 10px 40px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { height: 60px; margin-right: 40px; }
+        nav { flex: 1; }
+        nav ul { list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; position: relative; justify-content: flex-end; }
+        nav li { font-weight: 700; position: relative; }
+        nav a { color: #fff; text-decoration: none; transition: color 0.2s; }
+        nav a:hover { color: #ffe066; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #2a2f95;
+            min-width: 220px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            border-radius: 0 0 8px 8px;
+            z-index: 10;
+            padding: 0;
+            margin-top: 0;
+        }
+        .dropdown-content li { padding: 0; }
+        .dropdown-content a {
+            display: block;
+            padding: 12px 24px;
+            color: #fff;
+            font-weight: 400;
+            text-decoration: none;
+            border-bottom: 1px solid #4e6b2b;
+            white-space: nowrap;
+        }
+        .dropdown-content a:hover {
+            background: #2e3d1b;
+            color: #ffe066;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .menu-toggle { 
+            display: none; 
+            background: none; 
+            border: none; 
+            color: #fff; 
+            cursor: pointer; 
+            width: 24px; 
+            height: 24px;
+            padding: 0;
+        }
+
+        .banner {
+            background: #fbeee0;
+            padding: 0;
+            text-align: center;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            box-shadow: none;
+            display: block;
+        }
+
+        /* POLICY/LOYALTY SPECIFIC CSS */
+        .policy-intro {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        .policy-intro .container {
+            padding: 0 20px;
+        }
+        .policy-intro h2 {
+            font-size: 2rem;
+            color: #234d1b;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #fbeee0;
+            padding-bottom: 10px;
+        }
+        .policy-intro p {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .policy-intro p:before {
+            content: "•";
+            color: #a85b2b;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* FOOTER CSS */
+        footer { background: #1a1157; color: #fff; padding: 40px 0 20px 0; }
+        .footer-content { max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap; gap: 32px; padding: 0 20px; }
+        .footer-info { flex: 2; }
+        .footer-logo { height: 48px; margin-bottom: 16px; }
+        .footer-links { flex: 1; }
+        .footer-links ul { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 8px; }
+        .footer-links a { color: #ffe066; text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: #fff; }
+        .footer-bottom { text-align: center; margin-top: 32px; font-size: 0.95rem; color: #bbb; border-top: 1px solid #2e246e; padding-top: 20px; }
+
+
+        /* MOBILE/RESPONSIVE CSS */
+        .nav-open { display: flex !important; flex-direction: column; align-items: flex-start; }
+        @media (max-width: 900px) {
+            header { padding: 10px 20px; }
+            .logo { margin-right: 20px; height: 50px; }
+            .menu-toggle { display: block; }
+            nav { position: absolute; top: 70px; left: 0; width: 100%; background: #1a1157; z-index: 50; display: none; }
+            nav ul { flex-direction: column; align-items: flex-start; gap: 0; padding: 10px 0; }
+            nav a { padding: 10px 20px; display: block; width: 100%; }
+            .dropdown-content { position: static; min-width: 100%; box-shadow: none; border-radius: 0; background: #2e3d1b; }
+            .dropdown-content a { padding: 10px 40px; border-bottom: none; }
+            .dropdown:hover .dropdown-content { display: none; } 
+            
+            .banner { height: 200px; }
+            .policy-intro { padding: 20px 0; margin: 20px auto; border-radius: 0; }
+            .policy-intro .container { padding: 0 10px; }
+
+            .footer-content { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="Image/Logo.png" alt="Matie Cake" class="logo"></a>
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <nav id="main-nav">
+            <ul>
+                <li class="dropdown">
+                    <a href="#" aria-haspopup="true">Cake Menu</a>
+                    <ul class="dropdown-content" role="menu">
+                        <li><a href="index.html#new-products">New Products</a></li>
+                        <li><a href="index.html#favorite-products">Favorite Products</a></li>
+                        <li><a href="index.html#christmas-gifts">Christmas Gifts</a></li>
+                        <li><a href="index.html#tet-gifts">Tet Gifts</a></li>
+                    </ul>
+                </li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="khach-hang-than-thiet.html">Loyal Customers</a></li>
+                <li><a href="general-policy.html">General Policy</a></li>
+                <li><a href="work-shop.html">Workshop</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="banner">
+        <a href="tinh-hoa-doan-vien.html"><img src="Image/Giới thiệu.jpg" alt="Mid-Autumn Cake" class="banner-img"></a>
+    </section>
+    
+    <section class="policy-intro">
+        <div class="container">
+            <h2>LOYAL CUSTOMERS PROGRAM</h2>
+            <p>To thank our customers for always trusting and choosing Matie Cake for sweet parties, we would like to send you attractive offers exclusively for Matie Cake's loyal customers.</p> 
+            <p>Discounts are applied when purchasing full-priced products.</p>
+            <p>If there are multiple promotions, the highest promotion will be prioritized.</p>
+            <p>Member customers have priority to receive information about promotions or new products from Matie Cake.</p>
+            <p>Member customers can participate in promotions exclusively for VIP customers.</p>
+            <p>Promotions apply at stores and online stores.</p>
+            <p>Payment promotions via Grab application cannot be applied at the same time.</p>
+            <p>Matie Cake can update and change the terms of promotions to suit customer needs and actual operating conditions.</p>
+            <p>Delivery promotions apply to bills from 250,000 VND or more.</p>
+        </div>
+    </section> 
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="Image/Logo.png" alt="Matie Cake" class="footer-logo">
+                <div>Matie Cake Co., Ltd.</div>
+                <div>Address: 3636 Hai Ba Trung, Vo Thi Sau Ward, 3 district, Ho Chi Minh City</div>
+                <div>Phone: 0886804360</div>
+                <div>Email: matiecake@gmail.com</div>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return & Refund Policy</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Personal Data Protection</a></li>
+                    <li><a href="#">Contact Information</a></li>
+                    <li><a href="#">Store</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 Matie Cake.
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle logic
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+                    menuToggle.setAttribute('aria-expanded', !isExpanded);
+                    nav.classList.toggle('nav-open');
+                });
+            }
+
+            // Note: Removed slider and modal JS functions as they are not used on this page structure.
+        });
+    </script>
+</body>
+</html>
