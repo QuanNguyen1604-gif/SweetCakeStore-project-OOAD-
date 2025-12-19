@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,58 +9,124 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/styles/main.css">
     <link rel="stylesheet" href="src/styles/media query.css">
-
     <style>
-        /* CSS CHUNG VÀ CƠ BẢN (Đảm bảo tính liên kết giữa các trang) */
-        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-        .container { max-width: 1200px; margin: auto; padding: 0 15px; }
-        .nav-open { display: flex !important; flex-direction: column; align-items: flex-start; }
+        /* ===== BASE ===== */
+        html {
+            scroll-behavior: smooth;
+        }
 
-        /* HEADER & NAVIGATION */
-        header { background: #1a1157; color: #fff; padding: 10px 40px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .logo { height: 60px; margin-right: 40px; }
-        nav { flex: 1; }
-        nav ul { list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; position: relative; justify-content: flex-end; }
-        nav li { font-weight: 700; position: relative; }
-        nav a { color: #fff; text-decoration: none; transition: color 0.2s; }
-        nav a:hover { color: #ffe066; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: #ffffff;
+            color: #222;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: #e9e9e9;
+            color: #fff;
+            padding: 10px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            position: relative;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #a85b2b;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: #222;
+            font-weight: 600;
+        }
+
+        .cart-icon span {
+            background: #a85b2b;
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 2px 7px;
+            border-radius: 50%;
+            margin-left: 4px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1.5px solid #a85b2b;
+            color: #a85b2b;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .logout-btn:hover {
+            background: #a85b2b;
+            color: #fff;
+        }
+
+
+        /* ===== DROPDOWN ===== */
         .dropdown-content {
             display: none;
             position: absolute;
             top: 100%;
             right: 0;
-            background: #2a2f95;
+            background: #ffffff;
             min-width: 220px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-            border-radius: 0 0 8px 8px;
-            z-index: 10;
-            padding: 0;
-            margin-top: 0;
         }
-        .dropdown-content li { padding: 0; }
+
         .dropdown-content a {
             display: block;
             padding: 12px 24px;
-            color: #fff;
-            font-weight: 400;
-            text-decoration: none;
-            border-bottom: 1px solid #4e6b2b;
-            white-space: nowrap;
+            color: #000000;
         }
-        .dropdown-content a:hover {
-            background: #2e3d1b;
-            color: #ffe066;
-        }
-        .dropdown:hover .dropdown-content { display: block; }
-        .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 0; }
 
-        /* BANNER */
+        .dropdown-content a:hover {
+            background: #f7f7f7;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* ===== BANNER ===== */
         .banner {
             width: 100%;
             height: 400px;
             overflow: hidden;
             margin-bottom: 40px;
         }
+
         .banner-img {
             width: 100%;
             height: 100%;
@@ -67,259 +134,217 @@
             display: block;
         }
 
-        /* SECTION HEADERS AND PRODUCT CARDS */
+        /* ===== SECTION ===== */
         .section {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin: 60px auto;
+            padding: 0 20px;
+            background: transparent;
         }
+
         .section-title {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: #a85b2b;
-            margin-bottom: 25px;
-            text-align: center;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #fbeee0;
+            margin-bottom: 24px;
+            color: #2b2b2b;
         }
+
+        /* ===== PRODUCT GRID ===== */
         .products {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 28px;
         }
+
         .product-card-link {
             text-decoration: none;
             color: inherit;
         }
+
         .product-card {
-            width: 260px;
-            background: #faf7f2;
+            background: transparent;
+            padding: 0;
+            overflow: hidden;
             border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-align: center;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            box-shadow: none;
+            transition: transform .2s ease;
         }
+
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
         }
+
         .product-thumb {
             width: 100%;
-            height: 180px;
+            height: 260px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            border-radius: 12px;
         }
+
         .product-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: #222;
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
         }
 
-        /* FOOTER CSS */
-        footer { background: #1a1157; color: #fff; padding: 40px 0 20px 0; }
-        .footer-content { max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap; gap: 32px; padding: 0 20px; }
-        .footer-info { flex: 2; }
-        .footer-logo { height: 48px; margin-bottom: 16px; }
-        .footer-links { flex: 1; }
-        .footer-links ul { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 8px; }
-        .footer-links a { color: #ffe066; text-decoration: none; }
-        .footer-bottom { text-align: center; margin-top: 32px; font-size: 0.95rem; color: #bbb; border-top: 1px solid #2e246e; padding-top: 20px; }
+        /* ===== FOOTER ===== */
+        footer {
+            background: #000000;
+            color: #fff;
+            padding: 40px 0 20px;
+            margin-top: 80px;
+        }
 
+        .footer-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 0 20px;
+        }
 
-        /* MOBILE/RESPONSIVE CSS */
-        @media (max-width: 900px) {
-            header { padding: 10px 20px; }
-            .logo { height: 50px; }
-            .menu-toggle { display: block; }
-            nav { position: absolute; top: 70px; left: 0; width: 100%; background: #1a1157; z-index: 50; display: none; }
-            nav ul { flex-direction: column; align-items: flex-start; gap: 0; padding: 10px 0; }
-            nav a { padding: 10px 20px; display: block; width: 100%; }
-            .dropdown-content { position: static; min-width: 100%; box-shadow: none; border-radius: 0; background: #2e3d1b; }
-            .dropdown-content a { padding: 10px 40px; border-bottom: none; }
-            .dropdown:hover .dropdown-content { display: none; } 
-            
-            .banner { height: 200px; margin-bottom: 20px; }
-            .section { padding: 10px; margin: 20px auto; border-radius: 0; }
-            .products { gap: 15px; }
-            .product-card { width: 45vw; min-width: 150px; }
-            .product-thumb { height: 100px; }
+        .footer-logo {
+            height: 48px;
+            margin-bottom: 16px;
+        }
 
-            .footer-content { flex-direction: column; align-items: center; text-align: center; }
+        .footer-links a {
+            color: #ffe066;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 20px;
+            }
+
+            .logo {
+                height: 50px;
+            }
+
+            .banner {
+                height: 200px;
+            }
+
+            .product-thumb {
+                height: 180px;
+            }
+
+            .section {
+                margin: 40px auto;
+            }
         }
     </style>
 </head>
+
 <body>
-    <header>
-        <a href="index.html"><img src="Image/Logo.png" alt="Matie Cake" class="logo"></a> 
-        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <header> <a href="index.html"><img src="Image/Logo.png" alt="Matie Cake" class="logo"></a> <button
+            class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <svg width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
-        </button>
+            </svg> </button>
         <nav id="main-nav">
             <ul>
-                <li class="dropdown">
-                    <a href="#" aria-haspopup="true">Cake Menu</a>
-                    <ul class="dropdown-content" role="menu">
+                <li><a href="home.html">Home</a></li>
+                <li class="dropdown"> <a href="cake-menu.html">Cake Menu</a>
+                    <ul class="dropdown-content">
                         <li><a href="#new-products">New Products</a></li>
                         <li><a href="#favorite-products">Favorite Products</a></li>
-                        <li><a href="#christmas-gifts">Christmas Gifts</a></li>
-                        <li><a href="#tet-gifts">Tet Gifts</a></li>
                     </ul>
                 </li>
-                <li><a href="home.html">Home</a></li>
                 <li><a href="khach-hang-than-thiet.html">Loyal Customers</a></li>
                 <li><a href="general-policy.html">General Policy</a></li>
                 <li><a href="work-shop.html">Workshop</a></li>
             </ul>
         </nav>
-    </header>
-    
-    <section class="banner">
-        <a href="tinh-hoa-doan-vien.html"><img src="Image/Giới thiệu.jpg" alt="Mid-Autumn Cake" class="banner-img"></a>
-    </section>
+        <div class="header-actions">
+            <a href="cart.html" class="cart-icon">
+                🛒 <span id="cartCount">0</span>
+            </a>
 
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
+    <section class="banner"> <a href="banh-kem-han-quoc.html"><img src="Image/Giới thiệu.jpg" alt="Mid-Autumn Cake"
+                class="banner-img"></a> </section>
     <section class="section" id="new-products">
         <div class="section-title">New Products</div>
-        <div class="products">
-            <a href="tinh-hoa-doan-vien.html" class="product-card-link">
-                <div class="product-card">
-                    <img src="Image/Tinh hoa đoàn viên 1.jpg" alt="Tinh Hoa Đoàn Viên" class="product-thumb">
-                    <div class="product-name">Box of 4 Baked Cakes – “Tinh Hoa Doan Vien”</div>
+        <div class="products"> <a href="banh-kem-han-quoc.html" class="product-card-link">
+                <div class="product-card"> <img src="Image/banh-kem-han-quoc.jpeg" alt="Minimalist Cake"
+                        class="product-thumb">
+                    <div class="product-name">Banh kem Han Quoc - Minimalist Cake</div>
                 </div>
-            </a>
-            <a href="kim-sa-nguyet-bao.html" class="product-card-link">
-                <div class="product-card">
-                    <img src="Image/Kim sa nguyệt bảo 1.jpg" alt="Kim Sa Nguyệt Bảo" class="product-thumb">
-                    <div class="product-name">Box 6 Lava Cakes - Kim Sa Nguyet Bao</div>
+            </a> <a href="chocolate-cake.html" class="product-card-link">
+                <div class="product-card"> <img src="Image/banh kem socola.jpg" alt="Chocolate Cake"
+                        class="product-thumb">
+                    <div class="product-name">Banh kem Socola - Chocolate Cake</div>
                 </div>
-            </a>
-            <a href="ngoc-sac-tinh-hoa.html" class="product-card-link">
-                <div class="product-card">
-                    <img src="Image/Ngọc sắc tinh hoa 1.jpg" alt="Ngọc Sắc Tinh Hoa" class="product-thumb">
-                    <div class="product-name">Box 4 jelly cakes “Ngoc Sac Tinh Hoa”</div>
+            </a> <a href="lunchbox-cake.html" class="product-card-link">
+                <div class="product-card"> <img src="Image/banh kem bento.png" alt="Lunch Box Cake"
+                        class="product-thumb">
+                    <div class="product-name">Banh kem Bento - Lunch Box Cake</div>
                 </div>
-            </a>
-            <a href="trang-vang-gan-ket.html" class="product-card-link">
-                <div class="product-card">
-                    <img src="Image/Trăng vàng đoàn kết 1.jpg" alt="Trăng Vàng Gắn Kết" class="product-thumb">
-                    <div class="product-name">Box 4 Mini Cake “Trang Vang Gan Ket”</div>
+            </a> <a href="cheese-cake.html" class="product-card-link">
+                <div class="product-card"> <img src="Image/Banh kem pho mai.jpg" alt="CheeseCake" class="product-thumb">
+                    <div class="product-name">Banh kem pho mai - Cheese Cake</div>
                 </div>
-            </a>
-        </div>
+            </a> </div>
     </section>
-
     <section class="section" id="favorite-products">
         <div class="section-title">Favorite Products</div>
-        <div class="products">
-            <a href="set-tasty.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('set-tasty-3')">
-                    <img src="Image 2/Tasty 3/SetTasty3 1.png" alt="Set Tasty 3" class="product-thumb">
-                    <div class="product-name">Set Tasty 3</div>
+        <div class="products"> <a href="banh kem bap.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('banhkembap')"> <img src="Image/banh kem bap.jpg"
+                        alt="banhkembap" class="product-thumb">
+                    <div class="product-name">Sweet Corn Cake</div>
                 </div>
-            </a>
-            <a href="hoang-kim-bong-lan.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('hoang-kim-bong-lan')">
-                    <img src="Image 2/Hoàng Kim Bông Lan/Hoàng Kim Bông Lang 1.png" alt="Hoàng Kim Bông Lan" class="product-thumb">
-                    <div class="product-name">Golden Sponge Cake</div>
+            </a> <a href="bong lan trung muoi.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('bong lan trung muoi')"> <img
+                        src="Image/banh-bong-lan-trung-muoi.jpeg" alt="Bông lan trứng muối" class="product-thumb">
+                    <div class="product-name">Salted Egg Sponge Cake</div>
                 </div>
-            </a>
-            <a href="flan-gato.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('flan-gato')">
-                    <img src="Image 2/Flan gato/Flan Gato1.png" alt="Flan Gato" class="product-thumb">
-                    <div class="product-name">Flan Gato</div>
+            </a> <a href="mousse cake.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('flan-gato')"> <img
+                        src="Image 2/Banh Mousse/banh-mousse.jpg" alt="Mousse Cake" class="product-thumb">
+                    <div class="product-name">Mousse Cake</div>
                 </div>
-            </a>
-            <a href="flan-gato-donut.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('flan-gato-donut')">
-                    <img src="Image 2/Flan Gato Donut/Flan Gato Donut 1.png" alt="Flan Gato Donut" class="product-thumb">
+            </a> <a href="flan-gato-donut.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('flan-gato-donut')"> <img
+                        src="Image 2/Flan Gato Donut/Flan Gato Donut 1.png" alt="Flan Gato Donut" class="product-thumb">
                     <div class="product-name">Flan Gato Donut</div>
                 </div>
-            </a>
-            <a href="flan-cheese.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('flancheese')">
-                    <img src="Image 2/Flancheese/Flancheese 1.png" alt="Flancheese" class="product-thumb">
-                    <div class="product-name">Flancheese</div>
-                </div>
-            </a>
-            <a href="flan-cheese-donut.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('flancheese-donut')">
-                    <img src="Image 2/Flan cheese donut/Flancheese Donut 1.png" alt="Flancheese Donut" class="product-thumb">
+            </a> <a href="flan-cheese-donut.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('flancheese-donut')"> <img
+                        src="Image 2/Flan cheese donut/Flancheese Donut 1.png" alt="Flancheese Donut"
+                        class="product-thumb">
                     <div class="product-name">Flancheese Donut</div>
                 </div>
-            </a>
-        </div>
+            </a> <a href="vintage cake.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('vintage cake')"> <img src="Image/vintage cake.png"
+                        alt="Vintage Cake" class="product-thumb">
+                    <div class="product-name">Vintage Cake</div>
+                </div>
+            </a> </div>
     </section>
 
-    <section class="section" id="christmas-gifts">
-        <div class="section-title">Christmas Gifts</div>
-        <div class="products">
-            <a href="ginger-noel.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('ginger-noel')">
-                    <img src="Image 2/Ginger Noel 1.JPG" alt="Ginger Noel" class="product-thumb">
-                    <div class="product-name">Ginger Noel</div>
-                </div>
-            </a>
-            <a href="merry-crossiant.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('merry-crossiant')">
-                    <img src="Image 3/Merry Croissant 1.JPG" alt="Merry Croissant" class="product-thumb">
-                    <div class="product-name">Merry Croissant</div>
-                </div>
-            </a>
-            <a href="noel-delight.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('noel-delight')">
-                    <img src="Image 3/Noel Delight 1.JPG" alt="Noel Delight" class="product-thumb">
-                    <div class="product-name">Noel Delight</div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <section class="section" id="tet-gifts">
-        <div class="section-title">Tet Gifts</div>
-        <div class="products">
-            <a href="kim-bao-phat-loc.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('kim-bao-phat-loc')">
-                    <img src="Image 2/Kim Bảo Phát Lộc 1.jpg" alt="Kim Bảo Phát Lộc" class="product-thumb">
-                    <div class="product-name">Kim Bao Phat Loc</div>
-                </div>
-            </a>
-            <a href="kim-ngan-phat-tai.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('kim-ngan-phat-tai')">
-                    <img src="Image 2/Kim Ngân Phát Tài 1.jpg" alt="Kim Ngân Phát Tài" class="product-thumb">
-                    <div class="product-name">Kim Ngan Phat Tai</div>
-                </div>
-            </a>
-            <a href="xuan-sang-den-tet.html" class="product-card-link">
-                <div class="product-card" onclick="showProductModal('xuan-sang-den-tet')">
-                    <img src="Image 3/Xuân Sang Tết đến 1.jpg" alt="Xuân Sang Tết Đến" class="product-thumb">
-                    <div class="product-name">Xuan Sang Tet Den</div>
-                </div>
-            </a>
-        </div>
-    </section>
-    
     <footer>
         <div class="footer-content">
-            <div class="footer-info">
-                <img src="Image/Logo.png" alt="Matie Cake" class="footer-logo">
-                <div>Matie Cake Co., Ltd.</div>
-                <div>Address: 3636 Hai Ba Trung, Vo Thi Sau Ward, 3 district, Ho Chi Minh City</div>
-                <div>Phone: 0886804360</div>
-                <div>Email: matiecake@gmail.com</div>
+            <div class="footer-info"> <img src="Image/Logo.png" alt="Matie Cake" class="footer-logo">
+                <div>Sweet Cake Store Co., Ltd.</div>
+                <div>Address: 123 Hai Ba Trung, Vo Thi Sau Ward, 7 district, Ho Chi Minh City</div>
+                <div>Phone: 0986123456</div>
+                <div>Email: sweetcake@gmail.com</div>
             </div>
             <div class="footer-links">
                 <ul>
@@ -333,73 +358,46 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            © 2025 Matie Cake.
-        </div>
+        <div class="footer-bottom"> © 2025 Sweet Cake Store. </div>
     </footer>
-
-    <div id="product-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
-        <div id="modal-content" style="background: white; padding: 20px; border-radius: 10px; max-width: 500px; width: 90%;">
-            <button onclick="closeProductModal()" style="float: right;">&times;</button>
+    <div id="product-modal"
+        style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+        <div id="modal-content"
+            style="background: white; padding: 20px; border-radius: 10px; max-width: 500px; width: 90%;"> <button
+                onclick="closeProductModal()" style="float: right;">&times;</button>
             <h3>Product Detail</h3>
             <div id="modal-body">Loading...</div>
         </div>
     </div>
-    
-    <script>
-        // Dummy data for modal (not strictly needed for the fix, but kept for context)
-        const productData = {};
-
-        function showProductModal(key) {
-            // Functionality placeholder: In a real environment, this would fetch product data via AJAX
-            console.log("Showing modal for product:", key);
-            document.getElementById('product-modal').style.display = 'flex';
-            document.getElementById('modal-body').innerHTML = 'Loading details for ' + key + '...';
-        }
-
-        function closeProductModal() {
-            document.getElementById('product-modal').style.display = 'none';
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle logic
-            const menuToggle = document.querySelector('.menu-toggle');
-            const nav = document.querySelector('nav');
-
-            if (menuToggle && nav) {
-                menuToggle.addEventListener('click', function() {
-                    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
-                    menuToggle.setAttribute('aria-expanded', !isExpanded);
-                    // Use a class defined in CSS to handle visibility
-                    nav.classList.toggle('nav-open'); 
-                });
-            }
-
-            // Smooth scroll for anchor links within the page (used for Cake Menu dropdown)
-            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href === '#' || href.length <= 1) return;
-                    
-                    // Only prevent default if it's an internal anchor link on the current page
-                    if (href.startsWith('#')) {
-                         e.preventDefault();
-                         const target = document.querySelector(href);
-                         if (target) {
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                            // Close mobile menu after clicking anchor link
-                            if (nav.classList.contains('nav-open')) {
-                                nav.classList.remove('nav-open');
-                                menuToggle.setAttribute('aria-expanded', 'false');
-                            }
-                         }
-                    }
-                });
-            });
-        });
-    </script>
 </body>
+<script>
+    /* ===== LOGOUT ===== */
+    function logout() {
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "login.html";
+    }
+
+    /* ===== CART COUNT ===== */
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.getElementById("cartCount").innerText = cart.length;
+    }
+
+    updateCartCount();
+</script>
+<script>
+    /* ===== LOGOUT ===== */
+    function logout() {
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "login.html";
+    }
+
+    /* ===== CART COUNT ===== */
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.getElementById("cartCount").innerText = cart.length;
+    }
+
+    updateCartCount();
+</script>
 </html>

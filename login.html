@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Sweet Cake Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            height: 100vh;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+                url("Image 3/login.jpg") center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+        }
+
+        .login-box {
+            position: relative;
+            z-index: 2;
+            background: #fff;
+            padding: 36px 32px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 18px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            animation: fadeUp 0.6s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-box img {
+            width: 70px;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #234d1b;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 24px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 14px;
+            margin-bottom: 16px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #a85b2b;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #a85b2b, #7c3f1d);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(168, 91, 43, 0.4);
+        }
+
+        .error {
+            color: #d9534f;
+            font-size: 0.9rem;
+            display: none;
+            margin-top: 12px;
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                margin: 0 16px;
+                padding: 28px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <!-- Logo -->
+        <img src="Image/Logo.png" alt="Sweet Cake Store">
+
+        <h2>Welcome Back</h2>
+        <div class="subtitle">Login to Sweet Cake Store</div>
+
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+
+        <div class="error" id="errorMsg">Invalid username or password</div>
+
+        <div class="footer-text">
+            © 2025 Sweet Cake Store
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Demo account
+            if (username === 'admin' && password === '123456') {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('username', username);
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

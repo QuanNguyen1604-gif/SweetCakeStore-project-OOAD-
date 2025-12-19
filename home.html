@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,83 +12,172 @@
 
     <style>
         /* CSS CHUNG */
-        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-        .nav-open { display: flex !important; flex-direction: column; align-items: flex-start; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: #ffffff;
+            color: #222;
+        }
+
+        .nav-open {
+            display: flex !important;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
         /* HEADER & NAVIGATION */
-        header { background: #1a1157; color: #fff; padding: 10px 40px; display: flex; align-items: center; justify-content: space-between; }
-        .logo { height: 60px; margin-right: 40px; }
-        nav { flex: 1; }
-        nav ul { list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; position: relative; justify-content: flex-end; }
-        nav li { font-weight: 700; position: relative; }
-        nav a { color: #fff; text-decoration: none; transition: color 0.2s; }
-        nav a:hover { color: #ffe066; }
+        header {
+            background: #e9e9e9;
+            color: #fff;
+            padding: 10px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            position: relative;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #a85b2b;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: #222;
+            font-weight: 600;
+        }
+
+        .cart-icon span {
+            background: #a85b2b;
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 2px 7px;
+            border-radius: 50%;
+            margin-left: 4px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1.5px solid #a85b2b;
+            color: #a85b2b;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .logout-btn:hover {
+            background: #a85b2b;
+            color: #fff;
+        }
+
+
+        /* ===== DROPDOWN ===== */
         .dropdown-content {
             display: none;
             position: absolute;
             top: 100%;
             right: 0;
-            background: #2a2f95;
+            background: #ffffff;
             min-width: 220px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-            border-radius: 0 0 8px 8px;
-            z-index: 10;
-            padding: 0;
-            margin-top: 0;
         }
-        .dropdown:hover .dropdown-content { display: block; }
+
         .dropdown-content a {
             display: block;
             padding: 12px 24px;
-            color: #fff;
-            font-weight: 400;
-            text-decoration: none;
-            border-bottom: 1px solid #4e6b2b;
-            white-space: nowrap;
+            color: #000000;
         }
+
         .dropdown-content a:hover {
-            background: #2e3d1b;
-            color: #ffe066;
+            background: #f7f7f7;
         }
-        .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
 
 
         /* MIDDLE SECTION (Nội Dung Chính) */
         .middle-section {
+            font-family: 'Baloo 2', cursive;
+            font-weight: 600;
             display: flex;
             justify-content: center;
-            align-items: stretch; /* Stretch images to match content height */
+            align-items: stretch;
+            /* Stretch images to match content height */
             gap: 20px;
             max-width: 1400px;
             margin: 40px auto;
             padding: 0 20px;
             background-color: #f4f4f4;
         }
+
         .side-image {
-            width: 250px; /* Chiều rộng cố định cho ảnh bên */
+            width: 250px;
+            /* Chiều rộng cố định cho ảnh bên */
             object-fit: cover;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            min-height: 100%; /* Fill the height of the container */
-            max-height: 500px; /* Limit height for aesthetic */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            min-height: 100%;
+            /* Fill the height of the container */
+            max-height: 650px;
+            /* Limit height for aesthetic */
         }
+
         .center-content {
             flex-grow: 1;
             max-width: 700px;
             background: #fff;
             padding: 40px;
             border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
             line-height: 1.7;
         }
+
         .center-content h2 {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #a85b2b; /* Màu thương hiệu nổi bật */
+            color: #a85b2b;
+            /* Màu thương hiệu nổi bật */
             margin-bottom: 25px;
             text-align: center;
             text-transform: uppercase;
         }
+
         .center-content p {
             font-size: 1.1rem;
             color: #444;
@@ -95,41 +185,123 @@
         }
 
         /* FOOTER CSS */
-        footer { background: #1a1157; color: #fff; padding: 40px 0 20px 0; }
-        .footer-content { max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap; gap: 32px; padding: 0 20px; }
-        .footer-info { flex: 2; }
-        .footer-logo { height: 48px; margin-bottom: 16px; }
-        .footer-links { flex: 1; }
-        .footer-links ul { list-style: none; padding: 0; }
-        .footer-links li { margin-bottom: 8px; }
-        .footer-links a { color: #ffe066; text-decoration: none; transition: color 0.2s; }
-        .footer-links a:hover { color: #fff; }
-        .footer-bottom { text-align: center; margin-top: 32px; font-size: 0.95rem; color: #bbb; border-top: 1px solid #2e246e; padding-top: 20px; }
+        footer {
+            background: #000000;
+            color: #fff;
+            padding: 40px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            height: 48px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: #ffe066;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
 
         /* MOBILE/RESPONSIVE */
         @media (max-width: 1200px) {
-            .side-image { width: 150px; max-height: 400px; }
-            .center-content { padding: 30px; }
+            .side-image {
+                width: 150px;
+                max-height: 400px;
+            }
+
+            .center-content {
+                padding: 30px;
+            }
         }
 
         @media (max-width: 900px) {
-            header { padding: 10px 20px; }
-            .logo { height: 50px; }
-            .menu-toggle { display: block; }
-            nav { position: absolute; top: 70px; left: 0; width: 100%; background: #1a1157; z-index: 50; display: none; }
-            nav ul { flex-direction: column; align-items: flex-start; gap: 0; padding: 10px 0; }
-            nav a { padding: 10px 20px; display: block; width: 100%; }
-            .dropdown-content { position: static; min-width: 100%; box-shadow: none; border-radius: 0; background: #2e3d1b; }
-            
-            /* Hide side images on small screens */
-            .middle-section { flex-direction: column; gap: 0; padding: 0; margin: 20px auto; }
-            .side-image { display: none; }
-            .center-content { max-width: 95%; border-radius: 0; box-shadow: none; padding: 25px 15px; }
+            header {
+                padding: 10px 20px;
+            }
 
-            .footer-content { flex-direction: column; align-items: center; text-align: center; }
+            .logo {
+                height: 50px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #1a1157;
+                z-index: 50;
+                display: none;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                padding: 10px 0;
+            }
+
+            nav a {
+                padding: 10px 20px;
+                display: block;
+                width: 100%;
+            }
+
+            .dropdown-content {
+                position: static;
+                min-width: 100%;
+                box-shadow: none;
+                border-radius: 0;
+                background: #2e3d1b;
+            }
+
+            /* Hide side images on small screens */
+            .middle-section {
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                margin: 20px auto;
+            }
+
+            .side-image {
+                display: none;
+            }
+
+            .center-content {
+                max-width: 95%;
+                border-radius: 0;
+                box-shadow: none;
+                padding: 25px 15px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
         }
     </style>
 </head>
+
 <body>
     <header>
         <a href="index.html"><img src="Image/Logo.png" alt="Matie Cake" class="logo"></a>
@@ -142,49 +314,60 @@
         </button>
         <nav id="main-nav">
             <ul>
+                <li><a href="home.html">Home</a></li>
+
                 <li class="dropdown">
-                    <a href="#" aria-haspopup="true">Cake Menu</a>
-                    <ul class="dropdown-content" role="menu">
-                        <li><a href="index.html#new-products">New Products</a></li>
-                        <li><a href="index.html#favorite-products">Favorite Products</a></li>
-                        <li><a href="index.html#christmas-gifts">Christmas Gifts</a></li>
-                        <li><a href="index.html#tet-gifts">Tet Gifts</a></li>
+                    <a href="cake-menu.html">Cake Menu</a>
+                    <ul class="dropdown-content">
+                        <li><a href="cake-menu.html">New Products</a></li>
+                        <li><a href="cake-menu.html">Favorite Products</a></li>>
                     </ul>
                 </li>
-                <li><a href="home.html">Home</a></li>
+
                 <li><a href="khach-hang-than-thiet.html">Loyal Customers</a></li>
                 <li><a href="general-policy.html">General Policy</a></li>
                 <li><a href="work-shop.html">Workshop</a></li>
             </ul>
         </nav>
+        <div class="header-actions">
+            <a href="cart.html" class="cart-icon">
+                🛒 <span id="cartCount">0</span>
+            </a>
+
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
     </header>
-    
+
     <section class="middle-section">
-        <img src="Intro 1.jpg" 
-            alt="Ảnh trang trí bên trái" 
-            class="side-image left"
-        >        
+        <img src="sweetcake_left.jpg" alt="Ảnh trang trí bên trái" class="side-image left">
         <div class="center-content">
-            <h2>About Us</h2>
-            <p>Matie Cake was born from the passion and desire to create high-quality handmade cakes, both preserving traditional flavors and bringing a modern breath. Exporting small batches of cakes from family kitchens, the brand gradually shaped its own identity: meticulousness in ingredients, sophistication in flavor and creative taste in presentation.</p>
-            <p>Through the process of research, testing and perfection, Matie Cake officially launched the market with the mission of bringing customers cakes that are not only delicious but also contain mythical spiritual values. The motto **"Giving delicate gifts, sending love"** has become a guiding principle in all activities, from production, product design to customer experience.</p>
-            
-            <p>From the first challenging steps, Matie Cake has continuously developed, affirming its reputation in the handmade cake market. Nowadays, Matie Cake is not only the number 1 choice of customers when looking for a quality product but is also considered a symbol of sophistication in giving and sharing.</p>
+            <h2>ABOUT US – Sweet Cake Store</h2>
+            <p>Sweet Cake Store was created from a simple belief:</p>
+            <p>that a good cake is not just a dessert, but a moment of comfort, care, and connection.</p>
+            <p>We specialize in handcrafted cakes and pastries made in small batches, focusing on balance, freshness,
+                and refined flavors. Every product is thoughtfully prepared using carefully selected ingredients,
+                ensuring each bite feels light, satisfying, and genuinely comforting.</p>
+            <p>At Sweet Cake Store, we value simplicity and sincerity. From classic cakes to delicate pastries, our
+                creations are designed to suit everyday moments — a quiet afternoon, a warm gathering, or a thoughtful
+                gift shared with loved ones. We believe that sweetness does not need to be loud; it should feel natural,
+                elegant, and memorable.</p>
+            <p>Our baking process blends traditional techniques with a modern aesthetic, allowing us to preserve
+                familiar flavors while presenting them in a clean, contemporary style. Every detail — from texture to
+                presentation — is handled with care, reflecting our commitment to quality and craftsmanship.</p>
+            <p>Sweet Cake Store is more than a bakery. It is a place where sweetness is made gently, shared warmly, and
+                remembered fondly.</p>
         </div>
 
-        <img src="Intro 2.jpg" 
-            alt="Ảnh trang trí bên phải" 
-            class="side-image right">    
+        <img src="sweetcake_right.jpg" alt="Ảnh trang trí bên phải" class="side-image right">
     </section>
-    
+
     <footer>
         <div class="footer-content">
-            <div class="footer-info">
-                <img src="Image/Logo.png" alt="Matie Cake" class="footer-logo">
-                <div>Matie Cake Co., Ltd.</div>
-                <div>Address: 3636 Hai Ba Trung, Vo Thi Sau Ward, 3 district, Ho Chi Minh City</div>
-                <div>Phone: 0886804360</div>
-                <div>Email: matiecake@gmail.com</div>
+            <div class="footer-info"> <img src="Image/Logo.png" alt="Matie Cake" class="footer-logo">
+                <div>Sweet Cake Store Co., Ltd.</div>
+                <div>Address: 123 Hai Ba Trung, Vo Thi Sau Ward, 7 district, Ho Chi Minh City</div>
+                <div>Phone: 0986123456</div>
+                <div>Email: sweetcake@gmail.com</div>
             </div>
             <div class="footer-links">
                 <ul>
@@ -198,19 +381,17 @@
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            © 2025 Matie Cake.
-        </div>
+        <div class="footer-bottom"> © 2025 Sweet Cake Store. </div>
     </footer>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Mobile menu toggle logic
             const menuToggle = document.querySelector('.menu-toggle');
             const nav = document.querySelector('nav');
 
             if (menuToggle && nav) {
-                menuToggle.addEventListener('click', function() {
+                menuToggle.addEventListener('click', function () {
                     const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
                     menuToggle.setAttribute('aria-expanded', !isExpanded);
                     nav.classList.toggle('nav-open');
@@ -219,4 +400,19 @@
         });
     </script>
 </body>
+<script>
+    /* ===== LOGOUT ===== */
+    function logout() {
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "login.html";
+    }
+
+    /* ===== CART COUNT ===== */
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.getElementById("cartCount").innerText = cart.length;
+    }
+
+    updateCartCount();
+</script>
 </html>

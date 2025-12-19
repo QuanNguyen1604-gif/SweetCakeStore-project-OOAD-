@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Cakes | Matie Cake</title>
+    <link rel="icon" type="image/png" href="Image/Logo.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="stylesheet" href="src/styles/media query.css">
+    <style>
+        /* ===== BASE ===== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: #ffffff;
+            color: #222;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: #e9e9e9;
+            color: #fff;
+            padding: 10px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            position: relative;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #a85b2b;
+        }
+
+        /* ===== DROPDOWN ===== */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #ffffff;
+            min-width: 220px;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 24px;
+            color: #000000;
+        }
+
+        .dropdown-content a:hover {
+            background: #f7f7f7;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* ===== BANNER ===== */
+        .banner {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            background: transparent;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #2b2b2b;
+        }
+
+        /* ===== PRODUCT GRID ===== */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 28px;
+        }
+
+        .product-card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .product-card {
+            background: transparent;
+            padding: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: none;
+            transition: transform .2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .product-thumb {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .product-name {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #000000;
+            color: #fff;
+            padding: 40px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            height: 48px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: #ffe066;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: #222;
+            font-weight: 600;
+        }
+
+        .cart-icon span {
+            background: #a85b2b;
+            color: #fff;
+            font-size: 0.75rem;
+            padding: 2px 7px;
+            border-radius: 50%;
+            margin-left: 4px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1.5px solid #a85b2b;
+            color: #a85b2b;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .logout-btn:hover {
+            background: #a85b2b;
+            color: #fff;
+        }
+
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 20px;
+            }
+
+            .logo {
+                height: 50px;
+            }
+
+            .banner {
+                height: 200px;
+            }
+
+            .product-thumb {
+                height: 180px;
+            }
+
+            .section {
+                margin: 40px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header> <a href="index.html"><img src="Image/Logo.png" alt="Matie Cake" class="logo"></a> <button
+            class="menu-toggle" aria-label="Toggle menu" aria-expanded="false"> <svg width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg> </button>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li class="dropdown"> <a href="cake-menu.html">Cake Menu</a>
+                    <ul class="dropdown-content">
+                        <li><a href="#new-products">New Products</a></li>
+                        <li><a href="#favorite-products">Favorite Products</a></li>
+                    </ul>
+                </li>
+                <li><a href="khach-hang-than-thiet.html">Loyal Customers</a></li>
+                <li><a href="general-policy.html">General Policy</a></li>
+                <li><a href="work-shop.html">Workshop</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="cart.html" class="cart-icon">
+                🛒 <span id="cartCount">0</span>
+            </a>
+
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
+    <section class="banner"> <a href="banh-kem-han-quoc.html"><img src="Image/Giới thiệu.jpg" alt="Mid-Autumn Cake"
+                class="banner-img"></a> </section>
+    <section class="section" id="new-products">
+        <div class="section-title">New Products</div>
+        <div class="products"> <a href="banh-kem-han-quoc.html" class="product-card-link">
+                <div class="product-card"> <img src="Image/banh-kem-han-quoc.jpeg" alt="Minimalist Cake"
+                        class="product-thumb">
+                    <div class="product-name">Banh kem Han Quoc - Minimalist Cake</div>
+                </div>
+            </a> <a href="chocolate-cake.html" class="product-card-link">
+                <div class="product-card"> <img src="Image/banh kem socola.jpg" alt="Chocolate Cake"
+                        class="product-thumb">
+                    <div class="product-name">Banh kem Socola - Chocolate Cake</div>
+                </div>
+            </a> <a href="lunchbox-cake.html" class="product-card-link">
+                <div class="product-card"> <img src="Image/banh kem bento.png" alt="Lunch Box Cake"
+                        class="product-thumb">
+                    <div class="product-name">Banh kem Bento - Lunch Box Cake</div>
+                </div>
+            </a> <a href="cheese-cake.html" class="product-card-link">
+                <div class="product-card"> <img src="Image/Banh kem pho mai.jpg" alt="CheeseCake" class="product-thumb">
+                    <div class="product-name">Banh kem pho mai - Cheese Cake</div>
+                </div>
+            </a> </div>
+    </section>
+    <section class="section" id="favorite-products">
+        <div class="section-title">Favorite Products</div>
+        <div class="products"> <a href="banh kem bap.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('banhkembap')"> <img src="Image/banh kem bap.jpg"
+                        alt="banhkembap" class="product-thumb">
+                    <div class="product-name">Sweet Corn Cake</div>
+                </div>
+            </a> <a href="bong lan trung muoi.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('bong lan trung muoi')"> <img
+                        src="Image/banh-bong-lan-trung-muoi.jpeg" alt="Bông lan trứng muối" class="product-thumb">
+                    <div class="product-name">Salted Egg Sponge Cake</div>
+                </div>
+            </a> <a href="mousse cake.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('flan-gato')"> <img
+                        src="Image 2/Banh Mousse/banh-mousse.jpg" alt="Mousse Cake" class="product-thumb">
+                    <div class="product-name">Mousse Cake</div>
+                </div>
+            </a> <a href="flan-gato-donut.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('flan-gato-donut')"> <img
+                        src="Image 2/Flan Gato Donut/Flan Gato Donut 1.png" alt="Flan Gato Donut" class="product-thumb">
+                    <div class="product-name">Flan Gato Donut</div>
+                </div>
+            </a> <a href="flan-cheese-donut.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('flancheese-donut')"> <img
+                        src="Image 2/Flan cheese donut/Flancheese Donut 1.png" alt="Flancheese Donut"
+                        class="product-thumb">
+                    <div class="product-name">Flancheese Donut</div>
+                </div>
+            </a> <a href="vintage cake.html" class="product-card-link">
+                <div class="product-card" onclick="showProductModal('vintage cake')"> <img src="Image/vintage cake.png"
+                        alt="Vintage Cake" class="product-thumb">
+                    <div class="product-name">Vintage Cake</div>
+                </div>
+            </a> </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info"> <img src="Image/Logo.png" alt="Matie Cake" class="footer-logo">
+                <div>Sweet Cake Store Co., Ltd.</div>
+                <div>Address: 123 Hai Ba Trung, Vo Thi Sau Ward, 7 district, Ho Chi Minh City</div>
+                <div>Phone: 0986123456</div>
+                <div>Email: sweetcake@gmail.com</div>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return & Refund Policy</a></li>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Personal Data Protection</a></li>
+                    <li><a href="#">Contact Information</a></li>
+                    <li><a href="#">Store</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"> © 2025 Sweet Cake Store. </div>
+    </footer>
+    <div id="product-modal"
+        style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+        <div id="modal-content"
+            style="background: white; padding: 20px; border-radius: 10px; max-width: 500px; width: 90%;"> <button
+                onclick="closeProductModal()" style="float: right;">&times;</button>
+            <h3>Product Detail</h3>
+            <div id="modal-body">Loading...</div>
+        </div>
+    </div>
+</body>
+<script>
+    /* ===== LOGOUT ===== */
+    function logout() {
+        localStorage.removeItem("isLoggedIn");
+        window.location.href = "login.html";
+    }
+
+    /* ===== CART COUNT ===== */
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.getElementById("cartCount").innerText = cart.length;
+    }
+
+    updateCartCount();
+</script>
+</html>
