@@ -615,7 +615,14 @@
                     <button class="order-minus" aria-label="Decrease quantity">-</button>
                     <input type="number" value="1" min="1" class="order-qty" aria-label="Quantity">
                     <button class="order-plus" aria-label="Increase quantity">+</button>
-                    <a target="_blank" class="order-btn">Add to cart</a>
+                    <button class="order-btn add-to-cart"
+                    onclick="event.preventDefault(); event.stopPropagation();"
+                    data-product='{"productId":"P_BAP","name":"Sweet Corn Cake","price":150000}'>
+                    Add to cart
+                    </button>
+
+</button>
+
                 </div>
             </div>
         </div>
@@ -737,6 +744,8 @@
             }
         });
     </script>
+    <script src="js/cart.js"></script>
 </body>
+
 
 </html>

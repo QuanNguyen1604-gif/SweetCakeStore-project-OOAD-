@@ -379,8 +379,10 @@
 
     /* ===== CART COUNT ===== */
     function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cart = JSON.parse(localStorage.getItem("cartItem")) || [];
         document.getElementById("cartCount").innerText = cart.length;
+        const totalQty = cart.reduce((s,it)=>s+Number(it.qty||0),0);
+        document.getElementById("cartCount").innerText = totalQty;
     }
 
     updateCartCount();

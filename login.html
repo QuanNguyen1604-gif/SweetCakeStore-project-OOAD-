@@ -2,173 +2,313 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Login | Sweet Cake Store</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Login | Sweet Cake Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap"
+    rel="stylesheet">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    * { box-sizing: border-box; }
 
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            height: 100vh;
-            background:
-                linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
-                url("Image 3/login.jpg") center / cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      height: 100vh;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)),
+        url("Image 3/login.jpg") center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
 
-        /* Overlay */
-        body::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.45);
-            z-index: 1;
-        }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
 
-        .login-box {
-            position: relative;
-            z-index: 2;
-            background: #fff;
-            padding: 36px 32px;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 18px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-            text-align: center;
-            animation: fadeUp 0.6s ease;
-        }
+    .login-box {
+      position: relative;
+      z-index: 2;
+      background: #fff;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      animation: fadeUp 0.6s ease;
+    }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .login-box img { width: 70px; margin-bottom: 12px; }
 
-        .login-box img {
-            width: 70px;
-            margin-bottom: 12px;
-        }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: #234d1b;
+      margin-bottom: 8px;
+    }
 
-        h2 {
-            font-family: 'Playfair Display', serif;
-            color: #234d1b;
-            margin-bottom: 8px;
-        }
+    .subtitle {
+      font-size: 0.95rem;
+      color: #777;
+      margin-bottom: 16px;
+    }
 
-        .subtitle {
-            font-size: 0.95rem;
-            color: #777;
-            margin-bottom: 24px;
-        }
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 18px 0 18px;
+    }
 
-        input {
-            width: 100%;
-            padding: 13px 14px;
-            margin-bottom: 16px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-        }
+    .tab {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+      cursor: pointer;
+      font-weight: 600;
+      color: #555;
+      user-select: none;
+    }
 
-        input:focus {
-            outline: none;
-            border-color: #a85b2b;
-        }
+    .tab.active {
+      background: #234d1b;
+      color: #fff;
+      border-color: #234d1b;
+    }
 
-        button {
-            width: 100%;
-            padding: 13px;
-            background: linear-gradient(135deg, #a85b2b, #7c3f1d);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    .form { display: none; }
+    .form.active { display: block; }
 
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(168, 91, 43, 0.4);
-        }
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      margin-bottom: 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
 
-        .error {
-            color: #d9534f;
-            font-size: 0.9rem;
-            display: none;
-            margin-top: 12px;
-        }
+    input:focus { outline: none; border-color: #a85b2b; }
 
-        .footer-text {
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: #aaa;
-        }
+    button {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #a85b2b, #7c3f1d);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-        @media (max-width: 480px) {
-            .login-box {
-                margin: 0 16px;
-                padding: 28px 22px;
-            }
-        }
-    </style>
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(168, 91, 43, 0.4);
+    }
+
+    .error {
+      color: #d9534f;
+      font-size: 0.9rem;
+      display: none;
+      margin-top: 12px;
+      line-height: 1.35;
+    }
+
+    .success {
+      color: #1a7f37;
+      font-size: 0.9rem;
+      display: none;
+      margin-top: 12px;
+      line-height: 1.35;
+    }
+
+    .hint {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .footer-text {
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 480px) {
+      .login-box { margin: 0 16px; padding: 28px 22px; }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="login-box">
-        <!-- Logo -->
-        <img src="Image/Logo.png" alt="Sweet Cake Store">
+  <div class="login-box">
+    <img src="Image/Logo.png" alt="Sweet Cake Store">
 
-        <h2>Welcome Back</h2>
-        <div class="subtitle">Login to Sweet Cake Store</div>
+    <h2 id="title">Welcome Back</h2>
+    <div class="subtitle" id="subtitle">Login to Sweet Cake Store</div>
 
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-
-        <button onclick="login()">Login</button>
-
-        <div class="error" id="errorMsg">Invalid username or password</div>
-
-        <div class="footer-text">
-            © 2025 Sweet Cake Store
-        </div>
+    <div class="tabs">
+      <div class="tab active" id="tabLogin" onclick="showTab('login')">Login</div>
+      <div class="tab" id="tabRegister" onclick="showTab('register')">Register</div>
     </div>
 
-    <script>
-        function login() {
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value;
+    <!-- LOGIN FORM -->
+    <div class="form active" id="loginForm">
+      <input type="text" id="loginUser" placeholder="Username or Email">
+      <input type="password" id="loginPass" placeholder="Password">
+      <button onclick="login()">Login</button>
 
-            // Demo account
-            if (username === 'admin' && password === '123456') {
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('username', username);
-                window.location.href = 'index.html';
-            } else {
-                document.getElementById('errorMsg').style.display = 'block';
-            }
-        }
-    </script>
+      <div class="hint">Admin demo: <b>admin</b> / <b>123456</b></div>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div class="form" id="registerForm">
+      <input type="text" id="regName" placeholder="Full name">
+      <input type="text" id="regEmail" placeholder="Email">
+      <input type="password" id="regPass" placeholder="Password (min 6 chars)">
+      <button onclick="register()">Create account</button>
+
+      <div class="hint">Sau khi đăng ký xong, quay lại Login để đăng nhập.</div>
+    </div>
+
+    <div class="error" id="errorMsg"></div>
+    <div class="success" id="successMsg"></div>
+
+    <div class="footer-text">© 2025 Sweet Cake Store</div>
+  </div>
+
+  <script>
+    const ADMIN_USERNAME = "admin";
+    const ADMIN_PASSWORD = "123456";
+
+    function showTab(which) {
+      document.getElementById("tabLogin").classList.toggle("active", which === "login");
+      document.getElementById("tabRegister").classList.toggle("active", which === "register");
+      document.getElementById("loginForm").classList.toggle("active", which === "login");
+      document.getElementById("registerForm").classList.toggle("active", which === "register");
+
+      document.getElementById("title").textContent = which === "login" ? "Welcome Back" : "Create Account";
+      document.getElementById("subtitle").textContent = which === "login"
+        ? "Login to Sweet Cake Store"
+        : "Register to Sweet Cake Store";
+
+      hideMsg();
+    }
+
+    function hideMsg() {
+      const e = document.getElementById("errorMsg");
+      const s = document.getElementById("successMsg");
+      e.style.display = "none"; e.textContent = "";
+      s.style.display = "none"; s.textContent = "";
+    }
+
+    function showError(msg) {
+      const e = document.getElementById("errorMsg");
+      const s = document.getElementById("successMsg");
+      s.style.display = "none"; s.textContent = "";
+      e.style.display = "block"; e.textContent = msg;
+    }
+
+    function showSuccess(msg) {
+      const e = document.getElementById("errorMsg");
+      const s = document.getElementById("successMsg");
+      e.style.display = "none"; e.textContent = "";
+      s.style.display = "block"; s.textContent = msg;
+    }
+
+    function validEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // ✅ REGISTER: save user list to localStorage
+    function register() {
+      hideMsg();
+
+      const name = document.getElementById("regName").value.trim();
+      const email = document.getElementById("regEmail").value.trim().toLowerCase();
+      const password = document.getElementById("regPass").value;
+
+      if (!name) return showError("Please enter your name.");
+      if (!validEmail(email)) return showError("Invalid email.");
+      if (!password || password.length < 6) return showError("Password must be at least 6 characters.");
+
+      // Do not allow register email "admin"
+      if (email === "admin") return showError("This email is not allowed.");
+
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+      // check duplicate email
+      if (users.some(u => u.email === email)) {
+        return showError("Email already registered. Please login.");
+      }
+
+      users.push({ name, email, password, role: "USER" });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      showSuccess("Register success! Please login.");
+      showTab("login");
+      document.getElementById("loginUser").value = email;
+      document.getElementById("loginPass").value = "";
+    }
+
+    // ✅ LOGIN: admin OR registered users
+    function login() {
+      hideMsg();
+
+      const userInput = document.getElementById("loginUser").value.trim();
+      const password = document.getElementById("loginPass").value;
+
+      if (!userInput || !password) return showError("Please enter username/email and password.");
+
+      // 1) Admin hard-code
+      if (userInput === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("role", "ADMIN");
+        localStorage.setItem("currentUser", "admin");
+        window.location.href = "index.html";
+        return;
+      }
+
+      // 2) Normal users from register (by email)
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      const found = users.find(u => u.email === userInput.toLowerCase() && u.password === password);
+
+      if (!found) {
+        return showError("Invalid username/email or password.");
+      }
+
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("role", "USER");
+      localStorage.setItem("currentUser", found.email);
+      localStorage.setItem("currentName", found.name);
+
+      window.location.href = "index.html";
+    }
+
+    // Enter to submit
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter") return;
+      const loginActive = document.getElementById("loginForm").classList.contains("active");
+      if (loginActive) login();
+      else register();
+    });
+  </script>
 
 </body>
-
 </html>

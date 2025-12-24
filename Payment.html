@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart | Sweet Cake Store</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brown:#7c3f1d;
+      --caramel:#a85b2b;
+      --cream:#fff7f1;
+      --text:#2b2b2b;
+      --muted:#6b6b6b;
+      --line:rgba(0,0,0,0.10);
+      --shadow: 0 12px 40px rgba(0,0,0,0.18);
+      --ok:#1a7f37;
+      --bad:#d9534f;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Roboto, system-ui, -apple-system, Segoe UI, Arial;
+      min-height:100vh;
+      color:var(--text);
+      background:
+        linear-gradient(rgba(255,255,255,0.60), rgba(255,255,255,0.60)),
+        url("Image 3/login.jpg") center/cover no-repeat;
+      position:relative;
+    }
+    body::before{
+      content:"";
+      position:absolute; inset:0;
+      background: rgba(0,0,0,0.30);
+      pointer-events:none;
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      max-width:1100px;
+      margin:0 auto;
+      padding:22px 16px 56px;
+    }
+
+    /* Topbar giống vibe login/home */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:16px;
+      background: rgba(255,255,255,0.92);
+      border:1px solid rgba(255,255,255,0.65);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      padding:14px 16px;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .logo{
+      width:44px;height:44px;border-radius:14px;
+      background: linear-gradient(135deg, var(--caramel), var(--brown));
+      display:grid;place-items:center;
+      color:white;font-weight:900;
+      letter-spacing:.5px;
+    }
+    .brand h1{
+      margin:0;
+      font-family:"Playfair Display", serif;
+      font-size:22px;
+      line-height:1.1;
+      color:#234d1b;
+    }
+    .brand p{
+      margin:2px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .btn{
+      border:none;
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:700;
+      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{
+      color:white;
+      background: linear-gradient(135deg, var(--caramel), var(--brown));
+      box-shadow: 0 8px 18px rgba(168,91,43,0.25);
+    }
+    .btn.ghost{
+      background: rgba(0,0,0,0.05);
+      color:#2b2b2b;
+      border:1px solid var(--line);
+    }
+    .btn.danger{
+      background: rgba(217,83,79,0.10);
+      border:1px solid rgba(217,83,79,0.35);
+      color:#8f2b29;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .card{
+      background: rgba(255,255,255,0.92);
+      border:1px solid rgba(255,255,255,0.65);
+      border-radius:18px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card-header{
+      padding:14px 16px;
+      border-bottom:1px solid rgba(0,0,0,0.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .title{
+      font-weight:900;
+      letter-spacing:.2px;
+      color:#234d1b;
+    }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(0,0,0,0.05);
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .items{padding:12px; display:grid; gap:10px;}
+    .item{
+      background: rgba(255,255,255,0.88);
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:16px;
+      padding:12px;
+      display:grid;
+      grid-template-columns: 54px 1fr auto;
+      gap:12px;
+      align-items:center;
+    }
+    .thumb{
+      width:54px;height:54px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(168,91,43,0.18), rgba(124,63,29,0.10));
+      border:1px solid rgba(168,91,43,0.25);
+      display:grid;place-items:center;
+      font-weight:900;
+      color: var(--brown);
+    }
+    .meta .name{margin:0;font-weight:900;font-size:14px}
+    .meta .sub{margin:6px 0 0;color:var(--muted);font-size:12px;display:flex;gap:10px;flex-wrap:wrap}
+    .right{display:grid;justify-items:end;gap:10px}
+    .price{font-weight:900}
+
+    .qty{display:flex;align-items:center;gap:8px}
+    .qty button{
+      width:32px;height:32px;border-radius:10px;
+      border:1px solid rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.04);
+      cursor:pointer;
+      font-weight:900;
+      color:#333;
+    }
+    .qty span{min-width:28px;text-align:center;font-weight:900}
+
+    .remove{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:10px;
+      border:1px solid rgba(217,83,79,0.35);
+      background: rgba(217,83,79,0.10);
+      color:#8f2b29;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .empty{
+      padding:22px 16px;
+      text-align:center;
+      color:var(--muted);
+    }
+
+    .summary{padding:16px; display:grid; gap:12px}
+    .row{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font-size:14px}
+    .row strong{color:var(--text);font-size:15px}
+    .divider{height:1px;background: rgba(0,0,0,0.08); margin:4px 0}
+
+    .select{
+      width:100%;
+      padding:11px 12px;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,0.12);
+      background: rgba(255,255,255,0.95);
+      outline:none;
+      font-weight:800;
+      color:#333;
+    }
+
+    .note{color:var(--muted);font-size:12px;line-height:1.35}
+
+    .result{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,0.10);
+      background: rgba(0,0,0,0.03);
+      font-size:13px;
+      line-height:1.35;
+      display:none;
+      font-weight:700;
+    }
+    .result.ok{border-color: rgba(26,127,55,0.35); background: rgba(26,127,55,0.08); color: var(--ok);}
+    .result.bad{border-color: rgba(217,83,79,0.35); background: rgba(217,83,79,0.08); color: var(--bad);}
+
+    .footer{margin-top:14px;color:rgba(255,255,255,0.75);font-size:12px;text-align:center}
+
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">SC</div>
+        <div>
+          <h1>Sweet Cake Store</h1>
+          <p>Cart & checkout</p>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" onclick="goHome()">Home</button>
+        <button class="btn danger" onclick="clearCart()">Clear Cart</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT -->
+      <div class="card">
+        <div class="card-header">
+          <div class="title">Your Cart</div>
+          <div class="badge" id="countBadge">0 items</div>
+        </div>
+
+        <div class="items" id="itemsBox"></div>
+
+        <div class="empty" id="emptyBox" style="display:none;">
+          Cart is empty. Add some cakes first 🍰
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="card">
+        <div class="card-header">
+          <div class="title">Checkout</div>
+          <div class="badge">Mock Payment</div>
+        </div>
+
+        <div class="summary">
+          <div class="row"><span>Subtotal</span><strong id="subtotalText">0</strong></div>
+          <div class="row"><span>Shipping</span><strong id="shippingText">0</strong></div>
+          <div class="divider"></div>
+          <div class="row"><span>Total</span><strong id="totalText">0</strong></div>
+
+          <label style="margin-top:8px; font-weight:900;">Payment method</label>
+          <select class="select" id="payMethod">
+            <option value="COD">COD (Always success)</option>
+            <option value="ZaloPay">ZaloPay</option>
+            <option value="VNPay">VNPay</option>
+          </select>
+
+          <button class="btn primary" id="payBtn" onclick="checkoutAndPay()">Checkout & Pay</button>
+
+          <div class="note">
+            Flow: create order → pay → show SUCCESS/FAILED.
+          </div>
+
+          <div class="result" id="resultBox"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">© 2025 Sweet Cake Store</div>
+  </div>
+
+  <script>
+    const API_BASE = "http://localhost:4000";
+
+    function money(v){
+      const n = Number(v || 0);
+      return n.toLocaleString("vi-VN") + " ₫";
+    }
+
+    function loadCart(){
+      try { return JSON.parse(localStorage.getItem("cartItems") || "[]"); }
+      catch { return []; }
+    }
+    function saveCart(items){
+      localStorage.setItem("cartItems", JSON.stringify(items));
+    }
+
+    function calcSubtotal(items){
+      return items.reduce((sum, it) => sum + Number(it.price||0) * Number(it.qty||0), 0);
+    }
+    function shippingFee(subtotal){
+      return subtotal > 0 ? 15000 : 0;
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function render(){
+      const items = JSON.parse(localStorage.getItem("cartItems") || "[]");
+      const itemsBox = document.getElementById("itemsBox");
+      const emptyBox = document.getElementById("emptyBox");
+      const countBadge = document.getElementById("countBadge");
+
+      itemsBox.innerHTML = "";
+
+      if(!items.length){
+        emptyBox.style.display = "block";
+        countBadge.textContent = "0 items";
+      } else {
+        emptyBox.style.display = "none";
+        const totalQty = items.reduce((s,it)=> s + Number(it.qty||0), 0);
+        countBadge.textContent = `${totalQty} item(s)`;
+      }
+
+      items.forEach((it, idx) => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <div class="thumb">${(it.name || "Cake").slice(0,2).toUpperCase()}</div>
+          <div class="meta">
+            <p class="name">${escapeHtml(it.name || "Unknown cake")}</p>
+            <div class="sub">
+              <span>ID: <b>${escapeHtml(it.productId || "N/A")}</b></span>
+              <span>Unit: <b>${money(it.price)}</b></span>
+            </div>
+          </div>
+          <div class="right">
+            <div class="price">${money(Number(it.price||0) * Number(it.qty||0))}</div>
+            <div class="qty">
+              <button onclick="decQty(${idx})">−</button>
+              <span>${Number(it.qty||0)}</span>
+              <button onclick="incQty(${idx})">+</button>
+            </div>
+            <button class="remove" onclick="removeItem(${idx})">Remove</button>
+          </div>
+        `;
+        itemsBox.appendChild(div);
+      });
+
+      const subtotal = calcSubtotal(items);
+      const ship = shippingFee(subtotal);
+      const total = subtotal + ship;
+
+      subtotalText.textContent = money(subtotal);
+      shippingText.textContent = money(ship);
+      totalText.textContent = money(total);
+    }
+
+    function incQty(i){
+      const items = loadCart();
+      if(!items[i]) return;
+      items[i].qty = Number(items[i].qty||0) + 1;
+      saveCart(items); render();
+    }
+    function decQty(i){
+      const items = loadCart();
+      if(!items[i]) return;
+      const q = Number(items[i].qty||0) - 1;
+      if(q <= 0) items.splice(i,1);
+      else items[i].qty = q;
+      saveCart(items); render();
+    }
+    function removeItem(i){
+      const items = loadCart();
+      items.splice(i,1);
+      saveCart(items); render();
+    }
+
+    function clearCart(){
+      localStorage.removeItem("cartItems");
+      hideResult();
+      render();
+    }
+    function goHome(){
+      window.location.href = "index.html";
+    }
+
+    function showResult(type, text){
+      const box = document.getElementById("resultBox");
+      box.className = "result " + (type === "ok" ? "ok" : "bad");
+      box.style.display = "block";
+      box.textContent = text;
+    }
+    function hideResult(){
+      const box = document.getElementById("resultBox");
+      box.style.display = "none";
+      box.textContent = "";
+      box.className = "result";
+    }
+
+    async function checkoutAndPay(){
+      hideResult();
+      const btn = document.getElementById("payBtn");
+      btn.disabled = true;
+      btn.textContent = "Processing...";
+
+      try{
+        const items = loadCart();
+        if(!items.length){
+          showResult("bad", "Cart is empty. Add items first.");
+          return;
+        }
+
+        const subtotal = calcSubtotal(items);
+        const ship = shippingFee(subtotal);
+        const total = subtotal + ship;
+        const method = document.getElementById("payMethod").value;
+
+        // 1) Create order
+        const orderRes = await fetch(`${API_BASE}/api/orders`, {
+          method:"POST",
+          headers:{ "Content-Type":"application/json" },
+          body: JSON.stringify({ items, total })
+        });
+        const orderData = await orderRes.json().catch(()=>({}));
+        if(!orderRes.ok){
+          showResult("bad", orderData.message || "Create order failed");
+          return;
+        }
+        const orderId = orderData.orderId;
+
+        // 2) Pay
+        const payRes = await fetch(`${API_BASE}/api/payments/pay`, {
+          method:"POST",
+          headers:{ "Content-Type":"application/json" },
+          body: JSON.stringify({ orderId, method })
+        });
+        const payData = await payRes.json().catch(()=>({}));
+        if(!payRes.ok){
+          showResult("bad", payData.message || "Payment failed");
+          return;
+        }
+
+        if(payData.status === "SUCCESS"){
+          showResult("ok", `✅ Payment SUCCESS (${method}) | Order: ${orderId}`);
+          localStorage.removeItem("cartItems");
+          render();
+        } else {
+          showResult("bad", `❌ Payment FAILED (${method}) | Order: ${orderId}`);
+        }
+      } catch {
+        showResult("bad", "Cannot connect to server. Is backend running?");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Buy now";
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>
